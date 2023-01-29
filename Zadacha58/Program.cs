@@ -14,13 +14,13 @@ Console.WriteLine();
 Console.WriteLine("Матрица 2:");
 PrintArray(matrix2);
 Console.WriteLine("Результирующая матрица:");
-int[,] newmatrix = Multiplication(matrix1,matrix2);
+int[,] newmatrix = Multiplication(matrix1, matrix2);
 PrintArray(newmatrix);
+
 
 
 int[,] GetArray(int m, int n, int minValue, int maxValue)
 {
-
     int[,] result = new int[m, n];
     for (int i = 0; i < m; i++)
     {
@@ -48,18 +48,18 @@ void PrintArray(int[,] array)
 }
 
 int[,] Multiplication(int[,] A, int[,] B)
+{
+
+    int[,] C = new int[A.GetLength(0), B.GetLength(1)];
+    for (int i = 0; i < A.GetLength(0); i++)
+    {
+        for (int j = 0; j < B.GetLength(1); j++)
         {
-            
-            int[,] C = new int[A.GetLength(0), B.GetLength(1)];
-            for (int i = 0; i < A.GetLength(0); i++)
+            for (int k = 0; k < B.GetLength(0); k++)
             {
-                for (int j = 0; j < B.GetLength(1); j++)
-                {
-                    for (int k = 0; k < B.GetLength(0); k++)
-                    {
-                        C[i,j] += A[i,k] * B[k,j];
-                    }
-                }
+                C[i, j] += A[i, k] * B[k, j];
             }
-            return C;
         }
+    }
+    return C;
+}
